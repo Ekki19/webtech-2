@@ -1,0 +1,26 @@
+{
+  "/rest/*": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/logout": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/login.jsp": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

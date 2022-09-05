@@ -1,0 +1,93 @@
+<wt2-menu [showCreateBugButton]="false"></wt2-menu>
+
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-12">
+
+      <form [formGroup]="formGroup" (ngSubmit)="publicBug()">
+        <div class="card">
+
+          <div class="card-header">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-square menu_back clickable mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                  routerLink="/home"
+                  >
+              <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
+              <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
+            </svg>
+            <h1>Create bug</h1>
+          </div>
+
+          <div class="card-body">
+            <div class="alert alert-danger" *ngIf="errorMessage != null">
+              {{errorMessage}}
+              <button type="button" class="close float-right" aria-label="Close" (click)="errorMessage = null">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <input type="text" id="headline" formControlName="headline" class="form-control form-control-lg"
+                        placeholder="Headline"
+                        [ngClass]="{ 'is-invalid': submitted && check.headline.errors }"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && check.headline.errors">
+                  <div *ngIf="check.headline.errors.required">Headline is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 mt-2">
+                <textarea type="text" id="description" formControlName="description" class="form-control form-control-lg"
+                          placeholder="Description" rows="5"
+                          [ngClass]="{ 'is-invalid': submitted && check.description.errors }"
+                          ></textarea>
+                <div class="invalid-feedback" *ngIf="submitted && check.description.errors">
+                  <div *ngIf="check.description.errors.required">Description is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-2">
+                <input type="text" class="form-control form-control-lg" placeholder="Assign user"
+                        [(ngModel)]="assignUser" [ngModelOptions]="{standalone: true}"
+                        />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-2">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" id="publishBug" class="custom-control-input clickable"
+                          [(ngModel)]="bugPublic" [ngModelOptions]="{standalone: true}">
+                  <label for="publishBug" class="custom-control-label clickable">Publish Bug</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="row justify-content-end">
+              <div class="col-12 col-sm-3 mt-2">
+                <button class="btn btn-block btn-outline-dark" routerLink="/home">
+                  Back
+                </button>
+              </div>
+              <div class="col-12 col-sm-3 mt-2">
+                <button class="btn btn-block btn-primary" [disabled]="loading">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                  Public
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>

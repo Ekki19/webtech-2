@@ -1,0 +1,29 @@
+<div class="sticky-top navi">
+<nav class="container navbar">
+
+  <a class="rounded-circle d-flex align-items-center justify-content-center navi_profile clickable"
+      [matMenuTriggerFor]="menu"
+      >
+    {{getInitials()}}
+  </a>
+  <mat-menu #menu="matMenu" class="mt-2" id="profile">
+    <div class="text-center menu_user"><h2>{{user.username}}</h2></div>
+    <hr class="pb-2 mx-2 menu_hr">
+    <button mat-menu-item routerLink="/myprofile">Profile Management</button>
+    <button mat-menu-item *ngIf="isAdmin()" routerLink="/profiles">User Management</button>
+    <button mat-menu-item (click)="logout()" id="logoutbtn">Logout</button>
+  </mat-menu>
+
+  <span class="navbar-brand mx-auto clickable" routerLink="/home">
+    NoBugsGiven
+  </span>
+
+  <div style="width:91.4833px;">
+    <button id="createbug" class="btn btn-danger" routerLink="/create"
+            routerLinkActive="active" *ngIf="showCreateBugButton && isAllowedToCreateBug()"
+            >
+      Create Bug
+    </button>
+  </div>
+</nav>
+</div>

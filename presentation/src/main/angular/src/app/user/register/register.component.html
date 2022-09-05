@@ -1,0 +1,107 @@
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-12">
+
+      <form [formGroup]="formGroup"><!--(ngSubmit)="register($event)"-->
+        <div class="card">
+
+          <div class="card-header">
+            <h1>Register</h1>
+          </div>
+
+          <div class="card-body">
+            <div class="alert alert-danger" *ngIf="errorMessage != null">
+              {{errorMessage}}
+              <button type="button" class="close float-right" aria-label="Close" (click)="errorMessage = null">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 mt-2">
+                <input id="firstname" type="text" formControlName="firstname" class="form-control form-control-lg"
+                        placeholder="First name"
+                        [ngClass]="{ 'is-invalid': submitted && check.firstname.errors }"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && check.firstname.errors">
+                  <div *ngIf="check.firstname.errors.required">First name is required</div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2">
+                <input id="lastname" type="text" formControlName="lastname" class="form-control form-control-lg"
+                        placeholder="Last name"
+                        [ngClass]="{ 'is-invalid': submitted && check.lastname.errors }"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && check.lastname.errors">
+                  <div *ngIf="check.lastname.errors.required">Last name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 mt-2">
+                <input id="username" type="text" formControlName="username" class="form-control form-control-lg"
+                        placeholder="Username"
+                        [ngClass]="{ 'is-invalid': submitted && check.username.errors }"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && check.username.errors">
+                  <div *ngIf="check.username.errors.required">Username is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 mt-2">
+                <input id="password" type="password" class="form-control form-control-lg" placeholder="Password"
+                        [ngClass]="{ 'is-invalid': submitted && passwordError }"
+                        [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && passwordError">
+                  <div *ngIf="passwordError">Password is required</div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2">
+                <input id="validatepassword" type="password" class="form-control form-control-lg" placeholder="Validate Password"
+                        [ngClass]="{ 'is-invalid': submitted && valPasswordError }"
+                        [(ngModel)]="valPassword" [ngModelOptions]="{standalone: true}"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && valPasswordError">
+                  <div *ngIf="valPasswordError">Validation password must be equal to password!</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 mt-2">
+                <input name="email" type="text" formControlName="email" class="form-control form-control-lg"
+                        placeholder="E-Mail"
+                        [ngClass]="{ 'is-invalid': submitted && check.email.errors }"
+                        />
+                <div class="invalid-feedback" *ngIf="submitted && check.email.errors">
+                  <div *ngIf="check.email.errors.required">E-Mail is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="row justify-content-end">
+              <div class="col-12 col-sm-3 mt-2">
+                <button class="btn btn-block btn-outline-dark" routerLink="/login">
+                  Back
+                </button>
+              </div>
+              <div class="col-12 col-sm-3 mt-2">
+                <button type="submit" class="btn btn-block btn-primary" [disabled]="loading"
+                        (click)="register($event)">
+                  <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
